@@ -1,4 +1,5 @@
 #!/bin/bash
+#This works only for ubuntu
 
 
 read -p "Do you want to set static ip? yes/no:" prompt
@@ -44,14 +45,23 @@ echo gateway is $gip
 #lines to append the contents to the network file
 ###############################################################
 
-echo auto lo eth0 > /home/goge/network.conf
-echo iface lo inet loopback >> /home/goge/network.conf
-echo iface eth0 inet static >> /home/goge/network.conf
-echo address $ip >> /home/goge/network.conf
-echo netmask $subnet >> /home/goge/network.conf
-echo network $netip >> /home/goge/network.conf
-echo broadcast $bcip >> /home/goge/network.conf
-echo gateway $gip>> /home/goge/network.conf
+echo auto lo eth0 > /etc/network/interfaces
+echo iface lo inet loopback >> /etc/network/interfaces
+echo iface eth0 inet static >> /etc/network/interfaces
+echo address $ip >> /etc/network/interfaces
+echo netmask $subnet >> /etc/network/interfaces
+echo network $netip >> /etc/network/interfaces
+echo broadcast $bcip >> /etc/network/interfaces
+echo gateway $gip >> /etc/network/interfaces
+echo dns-nameservers 8.8.8.8 >> /etc/network/interfaces
+
+
+
+###############################################################
+#restarting the network services
+###############################################################
+
+service network-manager restart
 
 
 

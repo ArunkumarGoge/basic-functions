@@ -61,7 +61,7 @@ echo dns-nameservers 8.8.8.8 >> /etc/network/interfaces
 #restarting the network services
 ###############################################################
 
-service network-manager restart
+sudo ifdown eth0 && sudo ifup eth0
 
 
 

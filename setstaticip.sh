@@ -1,6 +1,7 @@
 #!/bin/bash
 #This works only for ubuntu
 
+echo "This script is to configure static or dynamic IP for number of network interfaces. Always run as root."
 read -p "How many network interface do you want to configure? :" n
 
 echo auto lo eth0 > ./temp
@@ -52,10 +53,11 @@ echo iface lo inet loopback >> ./temp
 		then
 			echo auto eth$i >> ./temp
 			echo iface eth$i inet dhcp >> ./temp
-			sudo ifdown eth$i && sudo ifup eth$i
-
+			
 		else
 			echo "nothing has changed"
+			rm ./temp
+			exit 1
 		fi
 	done
 

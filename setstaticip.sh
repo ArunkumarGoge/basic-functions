@@ -28,7 +28,7 @@ echo iface lo inet loopback >> ./temp
 			################################################################
 			echo ip is $ip
 			echo subnet mask is $subnet
-			echo network ip is $netip
+			echo network id is $netip
 			echo broadcast ip is $bcip
 			echo gateway is $gipcd.
 
@@ -46,7 +46,7 @@ echo iface lo inet loopback >> ./temp
 			echo netmask $subnet >> ./temp
 			echo network $netip >> ./temp
 			echo broadcast $bcip >> ./temp
-			echo gateway $gip >> ./temp
+			#echo gateway $gip >> ./temp
 			echo dns-nameservers 8.8.8.8 >> ./temp
 
 		elif [[ $prompt == "dynamic" || $prompt == "Dynamic" || $prompt == "d" || $prompt == "D" ]]
@@ -75,3 +75,4 @@ do
 sudo ifdown eth$i && sudo ifup eth$i
 done
 
+echo "one gatway ip need to be defined for any number of interface please edit  /etc/network/interface file and gateway 123.45.67.89 "
